@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata - Pecinta Alam</title>
+    <style>
+        /* CSS DALAM SATU FILE */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f7f4;
+            color: #2d4a22;
+        }
+
+        header {
+            background-color: #2e7d32;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #1b5e20;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            background-color: #4caf50;
+        }
+
+        .container {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #e8f5e9;
+        }
+
+        .info h2 {
+            margin-top: 0;
+            color: #1b5e20;
+        }
+
+        .bio-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .bio-table td {
+            padding: 12px 5px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .label {
+            font-weight: bold;
+            width: 150px;
+            color: #4caf50;
+        }
+
+        .hobby-tags {
+            margin-top: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-right: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #2e7d32;
+            color: white;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 600px) {
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Profil Pengelola</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Beranda</a>
+        <a href="biodata.html">Biodata</a>
+        <a href="galeri.html">Galeri</a>
+        <a href="video.html">Video</a>
+    </nav>
+
+    <div class="container">
+        <div class="profile-section">
+            <img src="https://via.placeholder.com/200" alt="Foto Profil" class="profile-img">
+            <div class="info">
+                <h2>Taufik</h2>
+                <p>Mahasiswa & Penggiat Lingkungan</p>
+                <div class="hobby-tags">
+                    <span class="tag">Perikanan</span>
+                    <span class="tag">Manajemen</span>
+                    <span class="tag">Alam</span>
+                </div>
+            </div>
+        </div>
+
+        <table class="bio-table">
+            <tr>
+                <td class="label">Nama Lengkap</td>
+                <td>Taufik</td>
+            </tr>
+            <tr>
+                <td class="label">Pendidikan</td>
+                <td>Penyuluhan dan Pembangunan Perikanan</td>
+            </tr>
+            <tr>
+                <td class="label">Fokus Utama</td>
+                <td>Manajemen Bisnis & Agrowisata</td>
+            </tr>
+            <tr>
+                <td class="label">Lokasi</td>
+                <td>Indonesia</td>
+            </tr>
+            <tr>
+                <td class="label">Motto</td>
+                <td>"Lestarikan Perairan, Sejahterakan Masyarakat."</td>
+            </tr>
+        </table>
+    </div>
+
+    <footer>
+        &copy; 2026 - Tema Alam Lestari | Profil Kreatif
+    </footer>
+
+</body>
+</html>
