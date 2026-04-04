@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Alam Nusantara</title>
+    <style>
+        /* CSS UNTUK TEMA ALAM */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f9f4; /* Hijau pucat */
+            color: #2c3e50;
+        }
+
+        header {
+            background-color: #27ae60; /* Hijau Daun */
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #1e8449;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #145a32;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .intro h2 {
+            color: #27ae60;
+            font-size: 2.5rem;
+        }
+
+        /* GRID GALERI */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: white;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover; /* Agar gambar tidak gepeng */
+            display: block;
+        }
+
+        .caption {
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            color: #27ae60;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #2c3e50;
+            color: #ecf0f1;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Eksplorasi Keindahan Alam</h1>
+        <p>Menjelajahi keasrian ekosistem flora dan fauna</p>
+    </header>
+
+    <nav>
+        <a href="#">Beranda</a>
+        <a href="#">Biodata</a>
+        <a href="#">Galeri</a>
+        <a href="#">Video</a>
+    </nav>
+
+    <div class="container">
+        <div class="intro">
+            <h2>Galeri Foto</h2>
+            <p>Kumpulan momen keindahan alam yang tertangkap kamera.</p>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=600" alt="Hutan Pinus">
+                <div class="caption">Hutan Pinus Tropis</div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=600" alt="Pegunungan">
+                <div class="caption">Puncak Pegunungan Hijau</div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=600" alt="Kabut Pagi">
+                <div class="caption">Kabut Pagi di Lembah</div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=600" alt="Sungai">
+                <div class="caption">Aliran Sungai Jernih</div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1500622764614-be358d8d45c3?w=600" alt="Hutan Hujan">
+                <div class="caption">Ekosistem Hutan Hujan</div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600" alt="Danau">
+                <div class="caption">Ketenangan Tepi Danau</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Pesona Alam Nusantara | Dibuat oleh Taufik
+    </footer>
+
+</body>
+</html>
