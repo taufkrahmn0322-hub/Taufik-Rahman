@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Alam | Pesona Hijau</title>
+    <title>Video Saya | Pesona Alam</title>
     <style>
-        /* CSS DALAM SATU FILE */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f7f4; /* Hijau pucat */
+            background-color: #f0f7f4;
             color: #2d4a22;
         }
 
         header {
-            background-color: #2e7d32; /* Hijau daun */
+            background-color: #2e7d32;
             color: white;
             padding: 2rem 1rem;
             text-align: center;
@@ -38,7 +37,6 @@
             text-transform: uppercase;
             font-size: 14px;
             font-weight: bold;
-            transition: 0.3s;
         }
 
         nav a:hover {
@@ -58,30 +56,22 @@
         h2 {
             color: #1b5e20;
             margin-bottom: 25px;
-            border-bottom: 2px solid #a5d6a7;
-            display: inline-block;
-            padding-bottom: 10px;
         }
 
-        /* Container Video Responsif (Ratio 16:9) */
+        /* Container Video Responsif */
         .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
             border-radius: 12px;
-            background: #000;
+            overflow: hidden;
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            background: #000;
         }
 
-        .video-wrapper iframe, 
-        .video-wrapper video {
-            position: absolute;
-            top: 0;
-            left: 0;
+        video {
             width: 100%;
-            height: 100%;
-            border: 0;
+            display: block;
         }
 
         .description {
@@ -98,24 +88,13 @@
             color: white;
             margin-top: 50px;
         }
-
-        /* Responsif Mobile */
-        @media (max-width: 600px) {
-            nav {
-                flex-direction: column;
-            }
-            nav a {
-                text-align: center;
-                border-bottom: 1px solid #2e7d32;
-            }
-        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Video Sekitar Rumah Saya</h1>
-        <p></p>
+        <h1>Dokumentasi Video</h1>
+        <p>Koleksi rekaman pribadi bertema alam</p>
     </header>
 
     <nav>
@@ -126,30 +105,27 @@
     </nav>
 
     <div class="container">
-        <h2>Keajaiban Hutan Tropis</h2>
+        <h2>Video Rumah</h2>
         
         <div class="video-wrapper">
-            <iframe 
-                src="video-rumah.mp4" 
-                title="Nature Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-            </iframe>
+            <video controls>
+                <source src="video-rumah.mp4" type="video/mp4">
+                Maaf, browser Anda tidak mendukung tag video ini.
+            </video>
         </div>
 
         <div class="description">
-            <h3>Tentang Video Ini</h3>
+            <h3>Keterangan</h3>
             <p>
-                Video ini menampilkan keindahan ekosistem hutan yang masih asri. 
-                Melalui tayangan ini, kita diingatkan betapa pentingnya menjaga kelestarian 
-                sumber daya alam demi masa depan generasi mendatang. 
-                Suasana hijau dan suara aliran air dapat memberikan efek relaksasi bagi penontonnya.
+                Menampilkan suasana sekitar rumah yang asri dan tenang. Rekaman ini 
+                menunjukkan betapa pentingnya menciptakan lingkungan hijau di area tempat tinggal 
+                untuk memberikan kesegaran setiap hari.
             </p>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Taufik Rahman | 2310715210008</p>
+        <p>&copy; 2026 Pesona Alam Indonesia</p>
     </footer>
 
 </body>
