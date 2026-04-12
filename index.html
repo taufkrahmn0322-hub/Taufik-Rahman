@@ -3,121 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesona Alam - Beranda</title>
+    <title>Formulir Pendataan Keuangan</title>
     <style>
-        /* CSS DALAM SATU FILE */
+        /* Desain bernuansa hijau alami dan bersih */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f7f4;
+            color: #333;
             margin: 0;
-            padding: 0;
-            background-color: #f0f7f4; /* Hijau pucat alam */
-            color: #2d4a22;
+            padding: 20px;
         }
-
-        header {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                              url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #1b5e20;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav a {
-            color: white;
-            padding: 15px 25px;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-weight: bold;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            background-color: #4caf50;
-        }
-
         .container {
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: 20px auto;
-            background: white;
-            border-radius: 12px;
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            line-height: 1.6;
         }
-
         h2 {
-            color: #1b5e20;
-            border-bottom: 2px solid #4caf50;
-            padding-bottom: 10px;
+            text-align: center;
+            color: #2e8b57; /* Sea Green */
+            margin-bottom: 20px;
         }
-
-        .hero-img {
-            width: 100%;
-            height: auto;
+        fieldset {
+            border: 1px solid #c3dbc5;
             border-radius: 8px;
-            margin-top: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+            background-color: #fafdfa;
         }
-
-        .features {
+        legend {
+            font-weight: bold;
+            color: #2e8b57;
+            background: #fff;
+            padding: 5px 15px;
+            border: 1px solid #c3dbc5;
+            border-radius: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+        input[type="text"], input[type="date"], input[type="email"], 
+        input[type="tel"], input[type="number"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #2e8b57;
+            box-shadow: 0 0 5px rgba(46, 139, 87, 0.3);
+        }
+        .radio-group {
             display: flex;
             gap: 20px;
-            margin-top: 30px;
+            padding: 10px 0;
         }
-
-        .card {
-            flex: 1;
-            padding: 15px;
-            background: #e8f5e9;
-            border-radius: 8px;
-            text-align: center;
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            cursor: pointer;
         }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #2e7d32;
+        .radio-group input {
+            margin-right: 8px;
+            width: auto;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        button[type="submit"] {
+            background-color: #2e8b57;
             color: white;
-            margin-top: 40px;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #246b43;
+        }
+        #loadingMsg {
+            display: none;
+            text-align: center;
+            color: #2e8b57;
+            margin-top: 15px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>WELCOME</h1>
-        <p></p>
-    </header>
+<div class="container">
+    <h2>Formulir Data Demografi & Transaksi</h2>
+    
+    <form id="pendataanForm">
+        
+        <fieldset>
+            <legend>Data Demografi</legend>
+            <div class="form-group">
+                <label for="nama">Nama Pengguna</label>
+                <input type="text" id="nama" name="nama" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="tgl_lahir">Tanggal Lahir</label>
+                <input type="date" id="tgl_lahir" name="tgl_lahir" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="alamat">Alamat Lengkap</label>
+                <textarea id="alamat" name="alamat" rows="3" required></textarea>
+            </div>
+            
+            <div class="grid-2">
+                <div class="form-group">
+                    <label for="telepon">No. Telepon</label>
+                    <input type="tel" id="telepon" name="telepon" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+            </div>
 
-    <nav>
-        <a href="index.html">Beranda</a>
-        <a href="biodata.html">Biodata</a>
-        <a href="galeri.html">Galeri</a>
-        <a href="video.html">Video</a>
-    </nav>
+            <div class="form-group">
+                <label for="pendidikan">Pendidikan Terakhir</label>
+                <input list="listPendidikan" id="pendidikan" name="pendidikan" placeholder="Pilih atau ketik pendidikan..." required>
+                <datalist id="listPendidikan">
+                    <option value="SD">
+                    <option value="SMP">
+                    <option value="SMA / SMK">
+                    <option value="D3">
+                    <option value="S1">
+                    <option value="S2">
+                    <option value="S3">
+                </datalist>
+            </div>
+        </fieldset>
 
-    <div class="container">
-        <h2>Halo, Saya Taufik Rahman</h2>
-        <p>
-            Ini merupakan implementasi dari tugas mata kuliah sitem informasi manajemen perikanan untuk memenuhi kriteria penilaian
-        </p>
-        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1350&q=80" alt="Pemandangan Danau" class="hero-img">
-    </div>
+        <fieldset>
+            <legend>Data Bank</legend>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label for="nama_bank">Nama Bank</label>
+                    <input list="listBank" id="nama_bank" name="nama_bank" placeholder="Pilih atau ketik bank..." required>
+                    <datalist id="listBank">
+                        <option value="Bank Mandiri">
+                        <option value="BCA">
+                        <option value="BNI">
+                        <option value="BRI">
+                        <option value="BSI">
+                        <option value="Bank Kalsel">
+                    </datalist>
+                </div>
+                <div class="form-group">
+                    <label for="no_rekening">Nomor Rekening</label>
+                    <input type="number" id="no_rekening" name="no_rekening" required>
+                </div>
+            </div>
+        </fieldset>
 
-    <footer>
-        &copy; 2026 - Taufik Rahman | 2310715210008
-    </footer>
+        <fieldset>
+            <legend>Data Transaksi Keuangan</legend>
+            <div class="form-group">
+                <label for="tgl_transaksi">Tanggal Transaksi</label>
+                <input type="date" id="tgl_transaksi" name="tgl_transaksi" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="uraian">Uraian Transaksi</label>
+                <input type="text" id="uraian" name="uraian" placeholder="Contoh: Pembelian bibit / Pembayaran listrik" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Jenis Transaksi (Pilih menggunakan tombol radio)</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="jenis_transaksi" value="Operasional" required> Operasional</label>
+                    <label><input type="radio" name="jenis_transaksi" value="Investasi"> Investasi</label>
+                    <label><input type="radio" name="jenis_transaksi" value="Pendanaan"> Pendanaan</label>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="form-group">
+                    <label for="debet">Debet (Rp)</label>
+                    <input type="number" id="debet" name="debet" value="0" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="kredit">Kredit (Rp)</label>
+                    <input type="number" id="kredit" name="kredit" value="0" min="0">
+                </div>
+            </div>
+        </fieldset>
+
+        <button type="submit" id="btnSubmit">Kirim Data</button>
+        <p id="loadingMsg">Memproses pengiriman data...</p>
+    </form>
+</div>
+
+<script>
+    // GANTI URL DI BAWAH INI DENGAN URL WEB APP GOOGLE APPS SCRIPT ANDA
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxoS_kCebPUSh12xvL4sXX_tugNJ_vGYi1mXLcN-EAXhg4Gy6LdXMa_ueI5nulwSjVTuQ/exec'; 
+    const form = document.getElementById('pendataanForm');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const loadingMsg = document.getElementById('loadingMsg');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault(); // Mencegah reload halaman
+        btnSubmit.disabled = true; // Nonaktifkan tombol agar tidak double klik
+        loadingMsg.style.display = 'block';
+
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                alert('Data berhasil disimpan ke Google Sheets!');
+                form.reset(); // Kosongkan form
+                btnSubmit.disabled = false;
+                loadingMsg.style.display = 'none';
+            })
+            .catch(error => {
+                alert('Terjadi kesalahan! Data gagal dikirim.');
+                console.error('Error!', error.message);
+                btnSubmit.disabled = false;
+                loadingMsg.style.display = 'none';
+            });
+    });
+</script>
 
 </body>
 </html>
