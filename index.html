@@ -13,7 +13,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Latar belakang malam badai (gelap kebiruan) */
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             overflow: hidden;
             position: relative;
@@ -28,7 +27,8 @@
             opacity: 0;
             z-index: 1;
             pointer-events: none;
-            animation: background_flash 8s linear infinite;
+            /* DIUBAH JADI 4 DETIK BIAR LEBIH CEPAT */
+            animation: background_flash 4s linear infinite; 
         }
 
         /* --- ANIMASI BENTUK PETIR MENYAMBAR --- */
@@ -38,32 +38,25 @@
             width: 70px;
             height: 100vh;
             background: #e0f7fa;
-            /* Membuat bentuk zig-zag petir pakai CSS murni */
             clip-path: polygon(50% 0%, 20% 40%, 60% 40%, 10% 100%, 80% 30%, 40% 30%);
             opacity: 0;
             z-index: 2;
             pointer-events: none;
-            /* Efek cahaya bersinar pada petir */
             filter: drop-shadow(0 0 15px #00ffff) drop-shadow(0 0 30px #fff);
-            animation: strike_down 8s linear infinite;
-            /* Titik awal menyambar dari atas */
+            /* DIUBAH JADI 4 DETIK BIAR LEBIH CEPAT */
+            animation: strike_down 4s linear infinite;
             transform-origin: top; 
         }
 
-        /* Posisi Petir Kiri */
-        .bolt-1 { 
-            left: 10%; 
-        }
+        .bolt-1 { left: 10%; }
         
-        /* Posisi Petir Kanan */
         .bolt-2 { 
             right: 15%; 
             width: 50px;
-            animation-delay: 0.1s; /* Menyambar sedikit lebih lambat dari yang kiri */
-            transform: scaleX(-1); /* Arah zig-zagnya dibalik biar beda */
+            animation-delay: 0.1s; 
+            transform: scaleX(-1); 
         }
 
-        /* Waktu kilatan layar putih */
         @keyframes background_flash {
             0%, 44% { opacity: 0; }
             45% { opacity: 0.3; background-color: #fff; } 
@@ -72,13 +65,12 @@
             48%, 100% { opacity: 0; }
         }
 
-        /* Waktu petir turun dari atas ke bawah */
         @keyframes strike_down {
-            0%, 44% { opacity: 0; transform: scaleY(0); } /* Sembunyi di atas */
-            44.5% { opacity: 1; transform: scaleY(1); } /* ZAP! Turun penuh ke bawah */
-            45% { opacity: 0; } /* Kedip hilang */
-            45.5% { opacity: 1; } /* Muncul lagi sekejap */
-            46%, 100% { opacity: 0; transform: scaleY(1); } /* Hilang sampai siklus berikutnya */
+            0%, 44% { opacity: 0; transform: scaleY(0); } 
+            44.5% { opacity: 1; transform: scaleY(1); } 
+            45% { opacity: 0; } 
+            45.5% { opacity: 1; } 
+            46%, 100% { opacity: 0; transform: scaleY(1); } 
         }
 
         /* --- KARTU MENU (Kaca Transparan) --- */
@@ -140,9 +132,7 @@
         <p>Taufik Rahman | 2310715210008</p>
         
         <a href="tugas1/index.html" class="btn"> Tugas 1: Biodata Diri</a>
-        
         <a href="tugas2/index.html" class="btn"> Tugas 2: Manajemen Data</a>
-        
         <a href="#" class="btn btn-locked">Tugas 3: (Coming Soon)</a>
 
         <div class="footer">Fishery Extension & Development</div>
