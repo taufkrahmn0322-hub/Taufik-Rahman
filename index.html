@@ -3,122 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesona Alam - Beranda</title>
+    <title>Portal Tugas SIM Perikanan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS DALAM SATU FILE */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f7f4; /* Hijau pucat alam */
-            color: #2d4a22;
-        }
-
-        header {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                              url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        nav {
+            min-height: 100vh;
             display: flex;
             justify-content: center;
-            background-color: #1b5e20;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            align-items: center;
+            /* Latar belakang gradient tema laut/alam */
+            background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+        }
+        
+        /* Efek kaca (Glassmorphism) */
+        .glass-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 40px;
+            width: 350px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            color: white;
         }
 
-        nav a {
-            color: white;
-            padding: 15px 25px;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-weight: bold;
+        h1 {
+            font-size: 26px;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        p {
             font-size: 14px;
-            transition: 0.3s;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
         }
 
-        nav a:hover {
-            background-color: #4caf50;
-        }
-
-        .container {
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: 20px auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            line-height: 1.6;
-        }
-
-        h2 {
-            color: #1b5e20;
-            border-bottom: 2px solid #4caf50;
-            padding-bottom: 10px;
-        }
-
-        .hero-img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-
-        .features {
+        .menu-wrapper {
             display: flex;
-            gap: 20px;
-            margin-top: 30px;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .card {
-            flex: 1;
+        .btn {
+            text-decoration: none;
+            color: #0083b0;
+            background: white;
             padding: 15px;
-            background: #e8f5e9;
-            border-radius: 8px;
-            text-align: center;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #2e7d32;
-            color: white;
-            margin-top: 40px;
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            background: #e0f7fa;
+        }
+
+        .btn-disabled {
+            background: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.8);
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        
+        .btn-disabled:hover {
+            transform: none;
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .footer-text {
+            margin-top: 30px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>WELCOME</h1>
-        <p></p>
-    </header>
+    <div class="glass-container">
+        <h1>Portal Tugas SIM</h1>
+        <p>Taufik Rahman | 2310715210008</p>
+        
+        <div class="menu-wrapper">
+            <a href="tugas1/index.html" class="btn">🌊 Tugas 1: Biodata Diri</a>
+            
+            <a href="#" class="btn btn-disabled">🌊 Tugas 2: (Segera Hadir)</a>
+            <a href="#" class="btn btn-disabled">🌊 Tugas 3: (Segera Hadir)</a>
+        </div>
 
-    <nav>
-        <a href="index.html">Beranda</a>
-        <a href="biodata.html">Biodata</a>
-        <a href="galeri.html">Galeri</a>
-        <a href="video.html">Video</a>
-        <a href="tugas2.html">Tugas 2</a>
-    </nav>
-
-    <div class="container">
-        <h2>Halo, Saya Taufik Rahman</h2>
-        <p>
-            Ini merupakan implementasi dari tugas mata kuliah sistem informasi manajemen perikanan untuk memenuhi kriteria penilaian
-        </p>
-        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1350&q=80" alt="Pemandangan Danau" class="hero-img">
+        <div class="footer-text">
+            Fishery Extension and Development
+        </div>
     </div>
-
-    <footer>
-        &copy; 2026 - Taufik Rahman | 2310715210008
-    </footer>
 
 </body>
 </html>
