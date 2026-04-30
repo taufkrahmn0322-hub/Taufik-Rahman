@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Tugas Taufik Rahman | God Level Storm</title>
+    <title>Portal Tugas Taufik Rahman | Ultimate Storm & Sparkles</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -18,7 +18,7 @@
             position: relative;
         }
 
-        /* --- 1. HUJAN MIRING TERTIUP ANGIN (BARU) --- */
+        /* --- 1. HUJAN MIRING TERTIUP ANGIN --- */
         body::after {
             content: "";
             position: absolute;
@@ -26,7 +26,7 @@
             background-image: linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px);
             background-size: 2px 60px;
             z-index: 0;
-            transform: rotate(20deg); /* Kemiringan angin */
+            transform: rotate(20deg);
             animation: rain_wind 0.3s linear infinite;
             pointer-events: none;
         }
@@ -36,7 +36,7 @@
             100% { background-position: 0 1000px; }
         }
 
-        /* --- 2. KABUT BERGERAK (BARU) --- */
+        /* --- 2. KABUT BERGERAK --- */
         .fog {
             position: absolute;
             top: 0; left: -100%; width: 300%; height: 100%;
@@ -52,7 +52,7 @@
             100% { background-position: 800px 0; }
         }
 
-        /* --- 3. KILATAN CAHAYA (YANG LAMA) --- */
+        /* --- 3. KILATAN CAHAYA --- */
         .flash {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -63,7 +63,7 @@
             animation: bg_flash 4s infinite;
         }
 
-        /* --- 4. PETIR MENYAMBAR (YANG LAMA) --- */
+        /* --- 4. PETIR MENYAMBAR --- */
         .bolt {
             position: absolute;
             top: 0; width: 80px; height: 100vh;
@@ -86,11 +86,52 @@
 
         @keyframes strike {
             0%, 44% { opacity: 0; transform: scaleY(0) rotate(0deg); }
-            44.5% { opacity: 1; transform: scaleY(1) rotate(5deg); } /* Agak miring dikit ngikutin angin */
+            44.5% { opacity: 1; transform: scaleY(1) rotate(5deg); } 
             46%, 100% { opacity: 0; }
         }
 
-        /* --- 5. KARTU UTAMA DENGAN EFEK GUNCANG (YANG LAMA) --- */
+        /* --- 5. EFEK KELIP-KELIP TANPA PUTUS (BARU) --- */
+        .twinkle {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            filter: drop-shadow(0 0 8px #00f2ff); /* Efek bercahaya pada partikel */
+        }
+        
+        /* Kelip lapis pertama (agak cepat) */
+        .twinkle-1 {
+            background-image: 
+                radial-gradient(2px 2px at 15% 25%, #00f2ff 50%, transparent),
+                radial-gradient(1.5px 1.5px at 45% 75%, #ffffff 50%, transparent),
+                radial-gradient(2px 2px at 75% 35%, #00f2ff 50%, transparent),
+                radial-gradient(1.5px 1.5px at 85% 85%, #ffffff 50%, transparent),
+                radial-gradient(2px 2px at 30% 10%, #00f2ff 50%, transparent);
+            animation: blink_fast 1.5s ease-in-out infinite alternate;
+        }
+
+        /* Kelip lapis kedua (agak lambat, biar kedipnya nggak barengan) */
+        .twinkle-2 {
+            background-image: 
+                radial-gradient(1.5px 1.5px at 10% 80%, #ffffff 50%, transparent),
+                radial-gradient(2px 2px at 55% 15%, #00f2ff 50%, transparent),
+                radial-gradient(1px 1px at 80% 60%, #ffffff 50%, transparent),
+                radial-gradient(2px 2px at 25% 55%, #00f2ff 50%, transparent),
+                radial-gradient(1.5px 1.5px at 95% 20%, #ffffff 50%, transparent);
+            animation: blink_slow 2.5s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes blink_fast {
+            0% { opacity: 0.1; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes blink_slow {
+            0% { opacity: 0.1; }
+            100% { opacity: 0.8; }
+        }
+
+        /* --- 6. KARTU UTAMA DENGAN EFEK GUNCANG --- */
         .glass-card {
             background: rgba(10, 15, 30, 0.6);
             backdrop-filter: blur(20px);
@@ -113,7 +154,7 @@
             45.5% { transform: translate(0, 0); }
         }
 
-        /* --- 6. TEKS NEON TERSAMBAR PETIR (BARU) --- */
+        /* --- 7. TEKS NEON TERSAMBAR PETIR --- */
         h1 { 
             font-size: 26px; 
             margin-bottom: 5px; 
@@ -124,7 +165,7 @@
 
         @keyframes text_glow {
             0%, 44% { text-shadow: 0 0 5px rgba(0,242,255,0.3); color: #00f2ff; }
-            44.5% { text-shadow: 0 0 20px #00f2ff, 0 0 40px #fff; color: #fff; } /* Nyala terang pas petir */
+            44.5% { text-shadow: 0 0 20px #00f2ff, 0 0 40px #fff; color: #fff; } 
             46%, 100% { text-shadow: 0 0 5px rgba(0,242,255,0.3); color: #00f2ff; }
         }
 
@@ -147,7 +188,7 @@
             background: #fff;
             color: #0f172a;
             transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(0, 242, 255, 0.4); /* Efek glowing pas kursor diarahkan */
+            box-shadow: 0 10px 25px rgba(0, 242, 255, 0.4); 
         }
 
         .btn-locked { opacity: 0.3; cursor: not-allowed; }
@@ -156,6 +197,8 @@
 <body>
 
     <div class="fog"></div>
+    <div class="twinkle twinkle-1"></div>
+    <div class="twinkle twinkle-2"></div>
     <div class="flash"></div>
     <div class="bolt bolt-left"></div>
     <div class="bolt bolt-right"></div>
