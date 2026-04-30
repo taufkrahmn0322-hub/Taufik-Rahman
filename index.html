@@ -19,8 +19,7 @@
             position: relative;
         }
 
-        /* --- MODUL ANIMASI PETIR (Murni CSS) --- */
-        /* Efek kilatan petir di seluruh layar */
+        /* --- EFEK KILATAN CAHAYA DI LATAR (Flash) --- */
         body::before {
             content: "";
             position: absolute;
@@ -28,39 +27,63 @@
             background: #fff;
             opacity: 0;
             z-index: 1;
-            pointer-events: none; /* Agar tidak menghalangi tombol */
-            /* Menjalankan kilatan petir secara acak dan terus menerus */
-            animation: lightning_flash 8s linear infinite;
+            pointer-events: none;
+            animation: background_flash 8s linear infinite;
         }
 
-        /* Keyframes untuk kilatan petir acak */
-        @keyframes lightning_flash {
-            0% { opacity: 0; }
-            10% { opacity: 0; }
-            11% { opacity: 0.1; } /* Kilatan kecil awal */
-            12% { opacity: 0; }
-            20% { opacity: 0; }
-            21% { opacity: 0.15; background-color: #e0f7fa; } /* Kilatan kebiruan */
-            22% { opacity: 0; }
-            45% { opacity: 0; }
-            /* Kilatan besar mendadak */
-            46% { opacity: 0.3; background-color: #fff; } 
-            47% { opacity: 0.1; }
-            48% { opacity: 0.3; }
-            49% { opacity: 0; }
-            70% { opacity: 0; }
-            71% { opacity: 0.1; }
-            72% { opacity: 0; }
-            90% { opacity: 0; }
-            91% { opacity: 0.2; background-color: #bbf7ff; }
-            92% { opacity: 0.1; }
-            93% { opacity: 0; }
-            100% { opacity: 0; }
+        /* --- ANIMASI BENTUK PETIR MENYAMBAR --- */
+        .bolt {
+            position: absolute;
+            top: 0;
+            width: 70px;
+            height: 100vh;
+            background: #e0f7fa;
+            /* Membuat bentuk zig-zag petir pakai CSS murni */
+            clip-path: polygon(50% 0%, 20% 40%, 60% 40%, 10% 100%, 80% 30%, 40% 30%);
+            opacity: 0;
+            z-index: 2;
+            pointer-events: none;
+            /* Efek cahaya bersinar pada petir */
+            filter: drop-shadow(0 0 15px #00ffff) drop-shadow(0 0 30px #fff);
+            animation: strike_down 8s linear infinite;
+            /* Titik awal menyambar dari atas */
+            transform-origin: top; 
+        }
+
+        /* Posisi Petir Kiri */
+        .bolt-1 { 
+            left: 10%; 
+        }
+        
+        /* Posisi Petir Kanan */
+        .bolt-2 { 
+            right: 15%; 
+            width: 50px;
+            animation-delay: 0.1s; /* Menyambar sedikit lebih lambat dari yang kiri */
+            transform: scaleX(-1); /* Arah zig-zagnya dibalik biar beda */
+        }
+
+        /* Waktu kilatan layar putih */
+        @keyframes background_flash {
+            0%, 44% { opacity: 0; }
+            45% { opacity: 0.3; background-color: #fff; } 
+            46% { opacity: 0.1; }
+            47% { opacity: 0.4; }
+            48%, 100% { opacity: 0; }
+        }
+
+        /* Waktu petir turun dari atas ke bawah */
+        @keyframes strike_down {
+            0%, 44% { opacity: 0; transform: scaleY(0); } /* Sembunyi di atas */
+            44.5% { opacity: 1; transform: scaleY(1); } /* ZAP! Turun penuh ke bawah */
+            45% { opacity: 0; } /* Kedip hilang */
+            45.5% { opacity: 1; } /* Muncul lagi sekejap */
+            46%, 100% { opacity: 0; transform: scaleY(1); } /* Hilang sampai siklus berikutnya */
         }
 
         /* --- KARTU MENU (Kaca Transparan) --- */
         .glass-card {
-            background: rgba(255, 255, 255, 0.03); /* Lebih transparan */
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             border-radius: 25px;
@@ -70,18 +93,8 @@
             text-align: center;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
             color: white;
-            z-index: 10; /* Berada di atas kilatan petir */
+            z-index: 10;
             position: relative;
-        }
-        
-        /* Hiasan background kartu biar nggak polosan */
-        .glass-card::before {
-            content: "⚡";
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 30px;
-            opacity: 0.1;
         }
 
         h1 { font-size: 24px; margin-bottom: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); letter-spacing: 1px; }
@@ -119,17 +132,20 @@
 </head>
 <body>
 
+    <div class="bolt bolt-1"></div>
+    <div class="bolt bolt-2"></div>
+
     <div class="glass-card">
         <h1>PORTAL TUGAS</h1>
         <p>Taufik Rahman | 2310715210008</p>
         
-        <a href="tugas1/index.html" class="btn">⚡ Tugas 1: Biodata Diri</a>
+        <a href="tugas1/index.html" class="btn"> Tugas 1: Biodata Diri</a>
         
-        <a href="tugas2/index.html" class="btn">⚡ Tugas 2: Manajemen Data</a>
+        <a href="tugas2/index.html" class="btn"> Tugas 2: Manajemen Data</a>
         
         <a href="#" class="btn btn-locked">Tugas 3: (Coming Soon)</a>
 
-        <div class="footer">Fishery Extension & Development | Banjarmasin</div>
+        <div class="footer">Fishery Extension & Development</div>
     </div>
 
 </body>
