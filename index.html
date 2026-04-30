@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Tugas Taufik Rahman</title>
+    <title>Portal Tugas Taufik Rahman | Storm Version</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -13,49 +13,108 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Latar belakang tema laut yang dalam */
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            /* Latar belakang malam badai (gelap kebiruan) */
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            overflow: hidden;
+            position: relative;
         }
-        
+
+        /* --- MODUL ANIMASI PETIR (Murni CSS) --- */
+        /* Efek kilatan petir di seluruh layar */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #fff;
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none; /* Agar tidak menghalangi tombol */
+            /* Menjalankan kilatan petir secara acak dan terus menerus */
+            animation: lightning_flash 8s linear infinite;
+        }
+
+        /* Keyframes untuk kilatan petir acak */
+        @keyframes lightning_flash {
+            0% { opacity: 0; }
+            10% { opacity: 0; }
+            11% { opacity: 0.1; } /* Kilatan kecil awal */
+            12% { opacity: 0; }
+            20% { opacity: 0; }
+            21% { opacity: 0.15; background-color: #e0f7fa; } /* Kilatan kebiruan */
+            22% { opacity: 0; }
+            45% { opacity: 0; }
+            /* Kilatan besar mendadak */
+            46% { opacity: 0.3; background-color: #fff; } 
+            47% { opacity: 0.1; }
+            48% { opacity: 0.3; }
+            49% { opacity: 0; }
+            70% { opacity: 0; }
+            71% { opacity: 0.1; }
+            72% { opacity: 0; }
+            90% { opacity: 0; }
+            91% { opacity: 0.2; background-color: #bbf7ff; }
+            92% { opacity: 0.1; }
+            93% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        /* --- KARTU MENU (Kaca Transparan) --- */
         .glass-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03); /* Lebih transparan */
             backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             padding: 40px;
             width: 340px;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
             color: white;
+            z-index: 10; /* Berada di atas kilatan petir */
+            position: relative;
+        }
+        
+        /* Hiasan background kartu biar nggak polosan */
+        .glass-card::before {
+            content: "⚡";
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 30px;
+            opacity: 0.1;
         }
 
-        h1 { font-size: 24px; margin-bottom: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        p { font-size: 13px; margin-bottom: 30px; opacity: 0.8; }
+        h1 { font-size: 24px; margin-bottom: 8px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); letter-spacing: 1px; }
+        p { font-size: 13px; margin-bottom: 30px; opacity: 0.7; }
 
+        /* --- TOMBOL --- */
         .btn {
             display: block;
             text-decoration: none;
             color: white;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
             padding: 15px;
             border-radius: 15px;
             margin-bottom: 15px;
             font-weight: 600;
-            transition: 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .btn:hover {
             background: white;
-            color: #1e3c72;
-            transform: scale(1.05);
+            color: #1a253a;
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(255,255,255,0.15);
         }
 
         .btn-locked {
-            background: rgba(0, 0, 0, 0.2);
-            color: rgba(255, 255, 255, 0.4);
+            background: rgba(0, 0, 0, 0.3);
+            color: rgba(255, 255, 255, 0.3);
             cursor: not-allowed;
         }
+
+        .footer { font-size: 10px; margin-top: 20px; opacity: 0.4; }
     </style>
 </head>
 <body>
@@ -64,13 +123,13 @@
         <h1>PORTAL TUGAS</h1>
         <p>Taufik Rahman | 2310715210008</p>
         
-        <a href="tugas1/index.html" class="btn">Tugas 1: Biodata Diri</a>
+        <a href="tugas1/index.html" class="btn">⚡ Tugas 1: Biodata Diri</a>
         
-        <a href="tugas2/index.html" class="btn">Tugas 2: Manajemen Data</a>
+        <a href="tugas2/index.html" class="btn">⚡ Tugas 2: Manajemen Data</a>
         
         <a href="#" class="btn btn-locked">Tugas 3: (Coming Soon)</a>
 
-        <div style="font-size: 10px; margin-top: 20px; opacity: 0.5;">Fishery Extension & Development</div>
+        <div class="footer">Fishery Extension & Development | Banjarmasin</div>
     </div>
 
 </body>
