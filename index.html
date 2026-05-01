@@ -17,7 +17,6 @@
             background-size: 300% 300%;
             overflow: hidden;
             position: relative;
-            /* Efek perubahan warna drastis saat petir menyambar */
             animation: moveBg 10s ease infinite, color_explosion 4s infinite;
         }
 
@@ -34,16 +33,16 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* --- 1. HUJAN BADAI (LEBIH DERAS) --- */
+        /* --- 1. HUJAN BADAI EKSTRIM --- */
         body::after {
             content: "";
             position: absolute;
             top: -100%; left: -100%; width: 300%; height: 300%;
             background-image: linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px);
             background-size: 2px 40px;
-            z-index: 0;
+            z-index: 5;
             transform: rotate(25deg);
-            animation: rain_wind 0.15s linear infinite; /* Sangat cepat */
+            animation: rain_wind 0.15s linear infinite;
             pointer-events: none;
         }
 
@@ -52,230 +51,139 @@
             100% { background-position: 0 1000px; }
         }
 
-        /* --- 2. KABUT BERGERAK --- */
+        /* --- 2. GELOMBANG LAUT BENERAN (NEW!) --- */
+        .waves {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 15vh;
+            min-height: 100px;
+            max-height: 150px;
+            z-index: 15;
+        }
+
+        .parallax > use {
+            animation: move-forever 25s cubic-bezier(.55,.5,.45,.5) infinite;
+        }
+        .parallax > use:nth-child(1) { animation-delay: -2s; animation-duration: 7s; fill: rgba(0, 242, 255, 0.3); }
+        .parallax > use:nth-child(2) { animation-delay: -3s; animation-duration: 10s; fill: rgba(0, 86, 179, 0.5); }
+        .parallax > use:nth-child(3) { animation-delay: -4s; animation-duration: 13s; fill: rgba(0, 29, 61, 0.8); }
+        .parallax > use:nth-child(4) { animation-delay: -5s; animation-duration: 20s; fill: #001d3d; }
+
+        @keyframes move-forever {
+            0% { transform: translate3d(-90px,0,0); }
+            100% { transform: translate3d(85px,0,0); }
+        }
+
+        /* --- 3. KABUT & KILAT --- */
         .fog {
-            position: absolute;
-            top: 0; left: -100%; width: 300%; height: 100%;
+            position: absolute; top: 0; left: -100%; width: 300%; height: 100%;
             background: radial-gradient(circle at 50% 50%, rgba(0, 242, 255, 0.08) 0%, transparent 50%);
-            background-size: 800px 100%;
-            animation: fog_move 5s linear infinite; /* Makin ngebut */
-            z-index: 1; 
-            pointer-events: none;
+            background-size: 800px 100%; animation: fog_move 5s linear infinite; z-index: 1; pointer-events: none;
         }
+        @keyframes fog_move { 0% { background-position: 0 0; } 100% { background-position: 800px 0; } }
 
-        @keyframes fog_move {
-            0% { background-position: 0 0; }
-            100% { background-position: 800px 0; }
-        }
-
-        /* --- 3. KILATAN CAHAYA (SUPER SILAU) --- */
         .flash {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: #fff;
-            opacity: 0;
-            z-index: 2;
-            pointer-events: none;
-            animation: bg_flash 4s infinite;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff; opacity: 0; z-index: 2; animation: bg_flash 4s infinite;
         }
+        @keyframes bg_flash { 44% { opacity: 0; } 44.5% { opacity: 0.8; } 45% { opacity: 0; } 45.5% { opacity: 0.9; } 46% { opacity: 0; } }
 
-        /* --- 4. PETIR MENYAMBAR (KIRI, KANAN, TENGAH) --- */
+        /* --- 4. PETIR TIGA ARAH --- */
         .bolt {
-            position: absolute;
-            top: 0; height: 100vh;
-            background: #fff;
+            position: absolute; top: 0; height: 100vh; background: #fff;
             clip-path: polygon(50% 0%, 20% 40%, 60% 40%, 10% 100%, 80% 30%, 40% 30%);
-            opacity: 0; z-index: 3;
-            animation: strike 4s infinite;
+            opacity: 0; z-index: 3; animation: strike 4s infinite;
         }
-        
-        .bolt-left { left: 10%; width: 90px; filter: drop-shadow(0 0 30px #ff00ff) drop-shadow(0 0 60px #ff00ff); }
-        .bolt-right { right: 10%; width: 90px; transform: scaleX(-1); animation-delay: 0.1s; filter: drop-shadow(0 0 30px #00ffff) drop-shadow(0 0 60px #00ffff); }
-        .bolt-main { left: 45%; width: 150px; animation-delay: 0.05s; filter: drop-shadow(0 0 50px #ffffff) drop-shadow(0 0 100px #00f2ff); clip-path: polygon(40% 0%, 10% 50%, 50% 50%, 0% 100%, 90% 40%, 50% 40%); } /* Petir Raksasa */
+        .bolt-left { left: 10%; width: 90px; filter: drop-shadow(0 0 30px #ff00ff); }
+        .bolt-right { right: 10%; width: 90px; transform: scaleX(-1); animation-delay: 0.1s; filter: drop-shadow(0 0 30px #00ffff); }
+        .bolt-main { left: 45%; width: 150px; animation-delay: 0.05s; filter: drop-shadow(0 0 100px #00f2ff); }
 
-        @keyframes bg_flash {
-            44% { opacity: 0; }
-            44.5% { opacity: 0.8; }
-            45% { opacity: 0; }
-            45.5% { opacity: 0.9; }
-            46% { opacity: 0; }
-        }
+        @keyframes strike { 0%, 44% { opacity: 0; transform: scaleY(0); } 44.5% { opacity: 1; transform: scaleY(1) scale(1.5); } 46%, 100% { opacity: 0; } }
 
-        @keyframes strike {
-            0%, 44% { opacity: 0; transform: scaleY(0) rotate(0deg); }
-            44.5% { opacity: 1; transform: scaleY(1) rotate(3deg) scale(1.5); } 
-            46%, 100% { opacity: 0; }
-        }
-
-        /* --- 5. PERCIKAN API TERBANG (BARU!) --- */
-        .sparks {
-            position: absolute;
-            bottom: -50px;
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            z-index: 4;
-            pointer-events: none;
-            animation: fly_up linear infinite;
-        }
-        .spark-1 { left: 20%; background: #00ffff; box-shadow: 0 0 15px #00ffff; animation-duration: 2s; animation-delay: 0s; }
-        .spark-2 { left: 50%; background: #ff00ff; box-shadow: 0 0 15px #ff00ff; animation-duration: 2.5s; animation-delay: 0.5s; }
-        .spark-3 { left: 80%; background: #00ff88; box-shadow: 0 0 15px #00ff88; animation-duration: 1.8s; animation-delay: 1s; }
-        .spark-4 { left: 35%; background: #ffffff; box-shadow: 0 0 15px #ffffff; animation-duration: 3s; animation-delay: 0.2s; }
-
-        @keyframes fly_up {
-            0% { transform: translateY(0) scale(1); opacity: 1; }
-            100% { transform: translateY(-120vh) scale(0); opacity: 0; }
-        }
-
-        /* --- 6. KELIP-KELIP (TETAP ADA) --- */
-        .twinkle {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;
-        }
-        .twinkle-1 {
-            background-image: radial-gradient(3px 3px at 15% 25%, #00f2ff 50%, transparent), radial-gradient(2px 2px at 45% 75%, #ff00ff 50%, transparent), radial-gradient(3px 3px at 75% 35%, #00f2ff 50%, transparent);
-            filter: drop-shadow(0 0 10px #00f2ff); animation: blink_fast 0.8s ease-in-out infinite alternate;
-        }
-
-        @keyframes blink_fast { 0% { opacity: 0.2; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1.3); } }
-
-        /* --- 7. KARTU SUPER GUNCANG & GLOWING --- */
+        /* --- 5. KARTU MELEDAK & RGB BORDER (NEW!) --- */
         .glass-card {
-            background: rgba(10, 15, 30, 0.7);
+            background: rgba(10, 15, 30, 0.8);
             backdrop-filter: blur(25px);
             border-radius: 30px;
             padding: 40px;
             width: 350px;
             text-align: center;
             color: white;
-            z-index: 10;
+            z-index: 20;
             position: relative;
-            /* Guncangan lebih brutal saat petir */
-            animation: earthquake 4s infinite, cardGlow 2s infinite alternate;
+            border: 2px solid transparent;
+            /* Border RGB Berputar */
+            background-image: linear-gradient(rgba(10, 15, 30, 0.8), rgba(10, 15, 30, 0.8)), 
+                              conic-gradient(from 0deg, #ff00ff, #00ffff, #00ff88, #ffff00, #ff00ff);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            animation: earthquake 4s infinite, cardGlow 2s infinite alternate, rotateBorder 3s linear infinite;
         }
 
-        @keyframes cardGlow {
-            0% { box-shadow: 0 0 30px rgba(0, 242, 255, 0.6), inset 0 0 20px rgba(0, 242, 255, 0.3); border: 2px solid rgba(0, 242, 255, 0.8); }
-            100% { box-shadow: 0 0 60px rgba(255, 0, 255, 0.9), inset 0 0 40px rgba(255, 0, 255, 0.6); border: 2px solid rgba(255, 0, 255, 1); }
-        }
+        @keyframes rotateBorder { 100% { filter: hue-rotate(360deg); } }
 
         @keyframes earthquake {
             0%, 44% { transform: translate(0, 0) scale(1); }
             44.5% { transform: translate(15px, -15px) rotate(5deg) scale(1.1); }
             45% { transform: translate(-15px, 15px) rotate(-5deg) scale(1.1); }
-            45.5% { transform: translate(10px, -10px) rotate(3deg) scale(1.05); }
             46%, 100% { transform: translate(0, 0) scale(1); }
         }
 
-        /* --- 8. TEKS GLITCH HACKER (BARU!) --- */
+        @keyframes cardGlow {
+            0% { box-shadow: 0 0 30px rgba(0, 242, 255, 0.6); }
+            100% { box-shadow: 0 0 80px rgba(255, 0, 255, 1); }
+        }
+
+        /* --- 6. GLITCH TEKS --- */
         h1 { 
-            font-size: 30px; 
-            margin-bottom: 5px; 
-            letter-spacing: 3px; 
-            color: #fff;
-            position: relative;
-            text-transform: uppercase;
-            animation: text_glow 4s infinite;
+            font-size: 30px; letter-spacing: 3px; color: #fff; position: relative;
+            animation: text_glow 4s infinite; text-transform: uppercase;
         }
+        h1::before, h1::after { content: "PANGKALAN TUGAS"; position: absolute; top: 0; left: 0; width: 100%; opacity: 0.8; }
+        h1::before { color: #00ffff; z-index: -1; animation: glitch-1 2s infinite linear alternate-reverse; }
+        h1::after { color: #ff00ff; z-index: -2; animation: glitch-2 3s infinite linear alternate-reverse; }
 
-        h1::before, h1::after {
-            content: "PANGKALAN TUGAS";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            opacity: 0.8;
-        }
+        @keyframes glitch-1 { 0% { clip-path: inset(20% 0 80% 0); transform: translate(-3px, 1px); } 100% { clip-path: inset(30% 0 50% 0); transform: translate(3px, -1px); } }
+        @keyframes glitch-2 { 0% { clip-path: inset(10% 0 60% 0); transform: translate(3px, -1px); } 100% { clip-path: inset(5% 0 80% 0); transform: translate(-3px, 1px); } }
 
-        h1::before {
-            color: #00ffff;
-            z-index: -1;
-            animation: glitch-1 2s infinite linear alternate-reverse;
-        }
-
-        h1::after {
-            color: #ff00ff;
-            z-index: -2;
-            animation: glitch-2 3s infinite linear alternate-reverse;
-        }
-
-        @keyframes glitch-1 {
-            0% { clip-path: inset(20% 0 80% 0); transform: translate(-3px, 1px); }
-            20% { clip-path: inset(60% 0 10% 0); transform: translate(3px, -1px); }
-            40% { clip-path: inset(40% 0 50% 0); transform: translate(-3px, 2px); }
-            60% { clip-path: inset(80% 0 5% 0); transform: translate(3px, -2px); }
-            80% { clip-path: inset(10% 0 70% 0); transform: translate(-3px, 1px); }
-            100% { clip-path: inset(30% 0 50% 0); transform: translate(3px, -1px); }
-        }
-
-        @keyframes glitch-2 {
-            0% { clip-path: inset(10% 0 60% 0); transform: translate(3px, -1px); }
-            20% { clip-path: inset(30% 0 20% 0); transform: translate(-3px, 1px); }
-            40% { clip-path: inset(70% 0 10% 0); transform: translate(3px, -2px); }
-            60% { clip-path: inset(20% 0 50% 0); transform: translate(-3px, 2px); }
-            80% { clip-path: inset(50% 0 30% 0); transform: translate(3px, -1px); }
-            100% { clip-path: inset(5% 0 80% 0); transform: translate(-3px, 1px); }
-        }
-
-        p { font-size: 16px; margin-bottom: 30px; opacity: 0.9; font-weight: bold; text-shadow: 0 0 10px #fff; }
-
-        /* --- 9. TOMBOL MELEDAK SAAT DISENTUH --- */
+        /* --- 7. TOMBOL SUPER GUNCANG --- */
         .btn {
             display: block; text-decoration: none; color: white;
             background: rgba(255, 255, 255, 0.05); padding: 18px;
             border-radius: 15px; margin-bottom: 15px; font-weight: 800;
-            letter-spacing: 2px; transition: all 0.2s;
+            letter-spacing: 2px; transition: 0.2s;
             border: 2px solid rgba(0, 242, 255, 0.5); text-transform: uppercase;
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.2); position: relative; overflow: hidden;
         }
-
         .btn:hover {
             background: linear-gradient(45deg, #ff00ff, #00ffff);
-            color: #fff; border-color: #fff;
-            transform: scale(1.15) !important; /* Membesar drastis */
-            box-shadow: 0 20px 50px rgba(0, 242, 255, 0.8), 0 0 30px rgba(255, 0, 255, 0.8) inset; 
-            text-shadow: 0 0 10px #fff;
-            animation: btnShake 0.3s infinite; /* Tombol bergetar */
-            z-index: 20;
+            transform: scale(1.15); animation: btnShake 0.3s infinite;
+            box-shadow: 0 0 40px #00ffff;
         }
-
-        @keyframes btnShake {
-            0% { transform: scale(1.15) rotate(1deg); }
-            50% { transform: scale(1.15) rotate(-1deg); }
-            100% { transform: scale(1.15) rotate(1deg); }
-        }
+        @keyframes btnShake { 0% { transform: scale(1.15) rotate(2deg); } 100% { transform: scale(1.15) rotate(-2deg); } }
 
         .mantap-menn {
             margin-top: 30px; font-size: 18px; font-weight: 900;
-            color: #ffff00; text-shadow: 0 0 20px #ffff00, 0 0 40px #ff0000;
-            animation: pulseText 0.5s infinite alternate; letter-spacing: 4px;
+            color: #ffff00; animation: pulseText 0.5s infinite alternate;
         }
-
-        @keyframes pulseText {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.3); }
-        }
+        @keyframes pulseText { 0% { transform: scale(1); } 100% { transform: scale(1.3); } }
     </style>
 </head>
 <body>
 
-    <!-- Latar Belakang -->
     <div class="fog"></div>
-    <div class="twinkle twinkle-1"></div>
     <div class="flash"></div>
     
-    <!-- Percikan Api Terbang -->
-    <div class="sparks spark-1"></div>
-    <div class="sparks spark-2"></div>
-    <div class="sparks spark-3"></div>
-    <div class="sparks spark-4"></div>
-
-    <!-- 3 Petir Sekaligus -->
+    <!-- Petir -->
     <div class="bolt bolt-left"></div>
     <div class="bolt bolt-main"></div>
     <div class="bolt bolt-right"></div>
 
-    <!-- Kartu Utama -->
+    <!-- Kartu -->
     <div class="glass-card">
-        <h1 data-text="PANGKALAN TUGAS">PANGKALAN TUGAS</h1>
-        <p>Taufik Rahman | 2310715210008</p>
+        <h1>PANGKALAN TUGAS</h1>
+        <p style="font-weight: bold; text-shadow: 0 0 10px #fff;">Taufik Rahman | 2310715210008</p>
         
         <a href="tugas1/index.html" class="btn">Tugas 1</a>
         <a href="tugas2/index.html" class="btn">Tugas 2</a>
@@ -283,6 +191,20 @@
 
         <div class="mantap-menn">🚀 MANTAP MENN!!! 🔥</div>
     </div>
+
+    <!-- GELOMBANG LAUT (SVG ANIMATION) -->
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" />
+            <use xlink:href="#gentle-wave" x="48" y="3" />
+            <use xlink:href="#gentle-wave" x="48" y="5" />
+            <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+    </svg>
 
 </body>
 </html>
