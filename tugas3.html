@@ -9,63 +9,68 @@
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
-            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
-            color: #1e293b;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #080b12 0%, #0a192f 50%, #001d3d 100%);
+            color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
             padding: 40px 20px;
+            overflow-x: hidden;
         }
 
+        /* --- HEADER --- */
         .header {
             text-align: center;
             margin-bottom: 30px;
+            z-index: 10;
         }
-        h1 { color: #0369a1; margin: 0; text-transform: uppercase; letter-spacing: 1px; font-size: 24px; }
-        .nim { font-size: 14px; color: #64748b; font-weight: 600; }
+        h1 { margin: 0; color: #00f2ff; text-transform: uppercase; letter-spacing: 2px; }
+        p { opacity: 0.8; font-size: 14px; }
 
         /* --- TAB NAVIGASI --- */
         .tab-container {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             margin-bottom: 25px;
+            z-index: 10;
             flex-wrap: wrap;
             justify-content: center;
         }
         .tab-btn {
-            padding: 12px 25px;
-            border: 2px solid #0369a1;
-            background: white;
-            color: #0369a1;
+            padding: 12px 20px;
+            border: 1px solid #00f2ff;
+            background: rgba(0, 242, 255, 0.05);
+            color: #00f2ff;
             cursor: pointer;
-            font-weight: 700;
-            border-radius: 50px;
+            font-weight: 600;
+            border-radius: 8px;
             transition: 0.3s;
-            font-size: 13px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-transform: uppercase;
+            font-size: 12px;
         }
         .tab-btn.active {
-            background: #0369a1;
-            color: white;
-            box-shadow: 0 8px 15px rgba(3, 105, 161, 0.3);
+            background: #00f2ff;
+            color: #080b12;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
         }
 
-        /* --- KONTEN AREA (GLASS-CARD) --- */
-        .section-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 25px;
-            padding: 25px;
+        /* --- KONTEN AREA --- */
+        .glass-card {
+            background: rgba(10, 15, 30, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
             width: 100%;
-            max-width: 950px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            display: none; /* Sembunyikan default */
-            text-align: center;
+            max-width: 1000px;
+            height: 650px;
+            border: 1px solid rgba(0, 242, 255, 0.3);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            display: none; 
+            overflow: hidden;
+            z-index: 10;
         }
-        .section-card.active {
-            display: block;
+        .glass-card.active { 
+            display: block; 
             animation: fadeIn 0.5s ease;
         }
 
@@ -74,83 +79,70 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        h2 { color: #0369a1; font-size: 20px; margin-bottom: 10px; }
-        .info-text { font-size: 14px; color: #475569; margin-bottom: 20px; }
-
         iframe {
-            border: none;
-            border-radius: 15px;
             width: 100%;
-            height: 650px;
-            background: white;
+            height: 100%;
+            border: none;
+            background: white; /* Biar form/dashboard tetap jelas */
         }
 
         .btn-back {
             margin-top: 30px;
             text-decoration: none;
-            color: #0369a1;
+            color: #00f2ff;
             font-weight: 700;
-            font-size: 14px;
-            border-bottom: 2px solid transparent;
+            border-bottom: 1px solid #00f2ff;
             transition: 0.3s;
+            z-index: 10;
         }
-        .btn-back:hover { border-bottom: 2px solid #0369a1; }
+        .btn-back:hover { opacity: 0.6; }
 
-        footer { margin-top: 40px; opacity: 0.6; font-size: 12px; color: #0369a1; font-weight: bold; }
+        /* --- EFEK BACKGROUND GLOW --- */
+        .bg-glow {
+            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 500px; height: 500px; background: radial-gradient(circle, rgba(0,242,255,0.1) 0%, transparent 70%);
+            z-index: 1; pointer-events: none;
+        }
     </style>
 </head>
 <body>
 
+    <div class="bg-glow"></div>
+
     <div class="header">
         <h1>Tugas 3: Sistem Monitoring</h1>
-        <p class="nim">Taufik Rahman | 2310715210008</p>
+        <p>Taufik Rahman | 2310715210008 | Sosial Ekonomi Perikanan</p>
     </div>
 
     <div class="tab-container">
-        <button class="tab-btn active" onclick="showTab(event, 'input-area')">📋 Form Input Data</button>
-        <button class="tab-btn" onclick="showTab(event, 'output-area')">📊 Dashboard Monitoring</button>
+        <button class="tab-btn active" onclick="showContent(event, 'gform')">1. Form Input</button>
+        <button class="tab-btn" onclick="showContent(event, 'looker')">2. Dashboard Monitoring</button>
     </div>
 
-    <div id="input-area" class="section-card active">
-        <h2>1. Form Input Transaksi</h2>
-        <p class="info-text">Silakan isi data di bawah ini untuk memperbarui sistem.</p>
+    <div id="gform" class="glass-card active">
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd8FOmMYb7z5b79biiYfTg9O-d3vr--wJkvQIYb02hSji4SGw/viewform?embedded=true">Memuat…</iframe>
     </div>
 
-    <div id="output-area" class="section-card">
-        <h2>2. Dashboard Hasil Monitoring</h2>
-        <p class="info-text">Visualisasi data real-time berdasarkan input formulir.</p>
-        <iframe src="https://datastudio.google.com/embed/reporting/515bb048-c7dc-433f-8450-f271d0b78f72/page/page_12345" allowfullscreen></iframe>
-        <p style="font-size: 11px; color: #94a3b8; margin-top: 15px;">*Jika data belum muncul, silakan refresh halaman (F5).</p>
+    <div id="looker" class="glass-card">
+        <iframe src="https://datastudio.google.com/embed/reporting/515bb048-c7dc-433f-8450-f271d0b78f72/page/page_12345" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
     </div>
 
-    <a href="../index.html" class="btn-back">⬅ Kembali ke Beranda</a>
-
-    <footer>SOSIAL EKONOMI PERIKANAN</footer>
+    <a href="../index.html" class="btn-back">⬅ KEMBALI KE BERANDA UTAMA</a>
 
     <script>
-        function showTab(evt, tabId) {
-            var i, card, btn;
-            
-            // Sembunyikan semua card
-            card = document.getElementsByClassName("section-card");
-            for (i = 0; i < card.length; i++) {
-                card[i].style.display = "none";
-                card[i].classList.remove("active");
+        function showContent(evt, contentId) {
+            var i, glassCard, tabBtn;
+            glassCard = document.getElementsByClassName("glass-card");
+            for (i = 0; i < glassCard.length; i++) {
+                glassCard[i].style.display = "none";
             }
-
-            // Reset semua tombol
-            btn = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < btn.length; i++) {
-                btn[i].classList.remove("active");
+            tabBtn = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tabBtn.length; i++) {
+                tabBtn[i].className = tabBtn[i].className.replace(" active", "");
             }
-
-            // Tampilkan yang dipilih
-            document.getElementById(tabId).style.display = "block";
-            document.getElementById(tabId).classList.add("active");
-            evt.currentTarget.classList.add("active");
+            document.getElementById(contentId).style.display = "block";
+            evt.currentTarget.className += " active";
         }
     </script>
-
 </body>
 </html>
