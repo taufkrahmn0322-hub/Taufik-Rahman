@@ -35,6 +35,10 @@
     .btn-purple { background: linear-gradient(135deg, #8e44ad 0%, #732d91 100%); }
     .btn-purple:hover { box-shadow: 0 6px 16px rgba(115, 45, 145, 0.3); }
 
+    /* TAMBAHAN: Style khusus tombol hijau untuk file Excel */
+    .btn-green { background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); }
+    .btn-green:hover { box-shadow: 0 6px 16px rgba(39, 174, 96, 0.3); }
+
     /* Tombol Kembali ke Menu Awal (Dashboard) */
     .container-kembali { display: flex; justify-content: center; margin: 2.5rem 0 1rem 0; }
     .btn-kembali { display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 0.85rem 2rem; background: linear-gradient(135deg, #3282b8 0%, #27698f 100%); color: white; text-decoration: none; border-radius: 10px; font-weight: 600; font-size: 1rem; box-shadow: 0 4px 12px rgba(50, 130, 184, 0.2); transition: all 0.3s ease; }
@@ -59,7 +63,7 @@
 
     <section class="card">
       <h2 class="section-title"><i class="fa-solid fa-file-signature"></i>Rencana Kegiatan Kelompok</h2>
-      <p>Gunakan tombol di bawah ini untuk menuju formulir digital pengisian serta pengajuan program kerja baru kelompok tani pembudidaya ikan.</p>
+      <p>Gunakan tombol di bawah ini untuk menuju formulir digital pengisian serta pengajuan program kerja baru kelompok pembudidaya ikan.</p>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLScXxTQmtSx-BEGqGHxbTwcSeWI9eHiFV89f0MPVGrfsjlJnxw/viewform?usp=header" target="_blank" class="btn-link">
         <i class="fa-solid fa-pen-to-square"></i> Buka Google Form Rencana Kegiatan
       </a>
@@ -95,6 +99,14 @@
       <div class="embed-container">
         <iframe src="https://datastudio.google.com/embed/reporting/dd68752b-0260-4d6c-bd79-4f7ab0b3ad03/page/page_12345" allowfullscreen></iframe>
       </div>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title"><i class="fa-solid fa-file-excel"></i>Unduh Evaluasi Layanan</h2>
+      <p>Klik tombol di bawah ini untuk langsung mengunduh file Excel master data Rencana Kegiatan Kelompok beserta lembar penilaian instrumen performa.</p>
+      <a href="RENCANA KEGIATAN KELOMPOK.xlsx" download="RENCANA_KEGIATAN_KELOMPOK.xlsx" class="btn-link btn-green">
+        <i class="fa-solid fa-cloud-arrow-down"></i> Unduh Berkas Evaluasi Layanan (Excel)
+      </a>
     </section>
 
     <div class="container-kembali">
